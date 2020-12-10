@@ -7,7 +7,6 @@ import time
 import random
 import socket
 import threading
-import parser
 import struct
 
 version = "1.1.1"
@@ -315,7 +314,7 @@ class ac_db(device):
 		self.set_default_values()		
 		self.status['macaddress'] = ''.join(format(x, '02x') for x in mac) 
 		self.status['hostip'] = host
-		self.status['name'] = name
+		self.status['devicename'] = name
 		
 		
 		self.logging.basicConfig(level=(self.logging.DEBUG if debug else self.logging.INFO))
@@ -626,9 +625,6 @@ class ac_db(device):
 			
 		else:
 			return 0
-			
-			
-		return self.status
 		
 		
 	def make_nice_status(self,status):
@@ -804,11 +800,5 @@ class ac_db(device):
 				return self.status
 			else:
 				return False
-				
-		
-			
-			self.logger.debug ("Payload: Nice:" + ''.join(x.encode('hex') for x in response_payload ))
 
 		return "done"
-
- 
